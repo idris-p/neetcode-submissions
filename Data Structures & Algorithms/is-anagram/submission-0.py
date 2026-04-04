@@ -1,13 +1,11 @@
 class Solution:
     def isAnagram(self, s: str, t: str) -> bool:
-        list1 = []
-        list2 = []
-        for i in range(0, len(s)):
-            list1.append(s[i])
-        for i in range(0, len(t)):
-            list2.append(t[i])
+        occurrences = [0] * 26
 
-        list1.sort()
-        list2.sort()
+        for char in s:
+            occurrences[ord(char)-ord("a")] += 1
 
-        return (list1 == list2)
+        for char in t:
+            occurrences[ord(char)-ord("a")] -= 1
+
+        return occurrences == [0] * 26

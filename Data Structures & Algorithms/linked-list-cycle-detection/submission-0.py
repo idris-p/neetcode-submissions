@@ -6,14 +6,17 @@
 
 class Solution:
     def hasCycle(self, head: Optional[ListNode]) -> bool:
-        visited = set()
-        current = head
+        tortoise, hare = head, head
 
-        while current:
-            if current in visited:
-                return True
+        while hare:
+            tortoise = tortoise.next
+            if hare.next:
+                hare = hare.next.next
             else:
-                visited.add(current)
-            current = current.next
+                return False
+
+            if tortoise == hare:
+                return True
 
         return False
+

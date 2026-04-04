@@ -1,9 +1,11 @@
 class Solution:
     def hasDuplicate(self, nums: List[int]) -> bool:
-        for i in range(0, len(nums)):
-            pivot = nums[i]
-            for j in range(0, len(nums)):
-                if pivot == nums[j] and i != j:
-                    return True
+        seen = set()
+
+        for num in nums:
+            if num not in seen:
+                seen.add(num)
+            else:
+                return True
+        
         return False
-         
